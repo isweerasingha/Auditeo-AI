@@ -51,7 +51,7 @@ The audit process follows these core phases:
 
 ## Why Select Crew AI and a Multi-Agentic Approach?
 
-![CrewAI](https://cdn.prod.website-files.com/69a111972d2e0bbcc6adb934/69b84817c78b582a859f4221_style-guide-thumbnail.png)
+![CrewAI](https://cdn.prod.website-files.com/69a111972d2e0bbcc6adb934/69a111972d2e0bbcc6adbbba_Logo.svg)
 
 Using a multi-agent framework like CrewAI provides several key advantages over a single-prompt LLM approach:
 - **Separation of Concerns:** Specialized agents focus on specific domains (e.g., analysis vs. formatting), leading to deeper, more accurate insights.
