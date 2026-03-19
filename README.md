@@ -63,8 +63,8 @@ This project uses `uv` for fast dependency management and packaging.
 
 1. **Clone the repository:**
    ```bash
-   git clone <your-repo-url>
-   cd auditeo_ai
+   git clone https://github.com/isweerasingha/Auditeo-AI.git
+   cd Auditeo-AI
    ```
 
 2. **Install dependencies:**
@@ -83,6 +83,10 @@ This project uses `uv` for fast dependency management and packaging.
    OPENAI_API_KEY=your_openai_api_key_here
    ```
 
+   ```env
+   ENV=development
+   ```
+
 ---
 
 ## Running the Application
@@ -91,7 +95,7 @@ The application consists of two parts: the FastAPI backend and the Streamlit fro
 
 ### 1. Run the Backend API (FastAPI)
 
-Start the API server using the FastAPI CLI (or via `uv run`):
+Start the API server (or with ASGI server targeting via `uvicorn run`):
 
 ```bash
 python -m auditeo_ai.main
