@@ -4,14 +4,6 @@
 
 Auditeo AI is a comprehensive, AI-powered website auditing tool that leverages a multi-agent architecture to analyze websites. It extracts factual metrics, evaluates technical SEO and UX, and provides prioritized, actionable recommendations to improve website performance and conversion rates.
 
-## Why Select Crew AI and a Multi-Agentic Approach?
-
-Using a multi-agent framework like CrewAI provides several key advantages over a single-prompt LLM approach:
-- **Separation of Concerns:** Specialized agents focus on specific domains (e.g., analysis vs. formatting), leading to deeper, more accurate insights.
-- **Self-Correction & Validation:** Multi-agent workflows allow for built-in quality control. One agent generates recommendations while another critically validates them against factual data to prevent hallucinations.
-- **Model Optimization:** Complex reasoning tasks can be routed to more capable models (e.g., GPT 5.4), while formatting or validation tasks can use faster, cost-effective models (e.g., GPT 5.4 Mini).
-- **Complex Task Orchestration:** Breaking down the audit process into sequential crews (Insights -> Recommendations) ensures context is passed systematically, mimicking a real-world agency workflow.
-
 ---
 
 ## Table of Contents
@@ -56,6 +48,16 @@ The audit process follows these core phases:
 5. **Send to User:** Deliver the complete audit results to the frontend UI.
 
 ### AI Design Decisions
+
+## Why Select Crew AI and a Multi-Agentic Approach?
+
+https://cdn.prod.website-files.com/69a111972d2e0bbcc6adb934/69b84817c78b582a859f4221_style-guide-thumbnail.png
+
+Using a multi-agent framework like CrewAI provides several key advantages over a single-prompt LLM approach:
+- **Separation of Concerns:** Specialized agents focus on specific domains (e.g., analysis vs. formatting), leading to deeper, more accurate insights.
+- **Self-Correction & Validation:** Multi-agent workflows allow for built-in quality control. One agent generates recommendations while another critically validates them against factual data to prevent hallucinations.
+- **Model Optimization:** Complex reasoning tasks can be routed to more capable models (e.g., GPT 5.4), while formatting or validation tasks can use faster, cost-effective models (e.g., GPT 5.4 Mini).
+- **Complex Task Orchestration:** Breaking down the audit process into sequential crews (Insights -> Recommendations) ensures context is passed systematically, mimicking a real-world agency workflow.
 
 - **Multi-Agent Orchestration (CrewAI):** By separating concerns into distinct roles (e.g., SEO Auditor vs. Growth Strategist), the system ensures that each agent focuses on its specific domain, leading to higher quality and more specific outputs.
 - **Data Grounding Layer:** Instead of letting LLMs hallucinate website details, the flow strictly enforces a "Scrape First" policy. The AI agents are fed factual metrics and cleaned HTML content as their primary context.
