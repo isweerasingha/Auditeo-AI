@@ -3,7 +3,11 @@ from typing import Any
 from fastapi import APIRouter, HTTPException
 
 from auditeo_ai.flows.audit_flow import AuditFlow
-from auditeo_ai.models import APIResponse, AuditRunRequest, AuditRunResponse
+from auditeo_ai.models import (
+    APIResponse,
+    AuditRunRequest,
+    AuditRunResponse,
+)
 from auditeo_ai.utils import flow_loop_executor, get_logger
 
 router = APIRouter(tags=["audit"])
@@ -27,7 +31,7 @@ def _execute_audit_flow(
         flow = AuditFlow()
         flow.kickoff(inputs=inputs)
         data = AuditRunResponse(
-            website_url=inputs["website_url"],
+            website_url=flow.state.website_url,
             factual_metrics=flow.state.factual_metrics,
             kpis=flow.state.insights_crew_output.kpis,
             insights_report=flow.state.insights_crew_output.structured_report,
@@ -55,14 +59,16 @@ def _execute_audit_flow(
         )
 
 
-@router.post("/audit", response_model=AuditRunResponse)
-async def run_audit(payload: AuditRunRequest) -> AuditRunResponse:
+@router.post("/audit", response_model=APIResponse)
+async def run_audit(payload: AuditRunRequest) -> APIResponse:
 
     inputs = {"website_url": payload.website_url}
 
     response = await flow_loop_executor(_execute_audit_flow, inputs)
 
+    print("response.model_dump():", response.model_dump())
+
     if not response.success:
-        raise HTTPException(status_code=500, detail=response.message)
+        raise HTTPException(status_code=500, detail=response.model_dump())
 
     return response
