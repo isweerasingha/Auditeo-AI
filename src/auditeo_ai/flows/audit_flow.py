@@ -6,6 +6,7 @@ from crewai import Flow
 from crewai.flow.flow import listen, start
 from pydantic import BaseModel
 
+from auditeo_ai.crews.insights.insights_crew import InsightsCrew, InsightsCrewOutput
 from auditeo_ai.models import FactualMetrics
 from auditeo_ai.tools.scraper_tool import AuditeoScraperTool, AuditeoScraperToolOutput
 
@@ -19,6 +20,7 @@ class AuditFlowState(BaseModel):
     factual_metrics: FactualMetrics | None = None
     page_content: str | None = None
     page_content_clean: str | None = None
+    insights_crew_output: InsightsCrewOutput | None = None
 
 
 class AuditFlow(Flow[AuditFlowState]):
@@ -47,10 +49,19 @@ class AuditFlow(Flow[AuditFlowState]):
         print("Scraper tool result successfully set to State.")
 
     @listen("get_metrics")
-    def analyze_metrics(self) -> str:
+    def run_insights_crew(self) -> str:
         """
-        Analyze the metrics
+        Run the insights crew
         """
-        print("Analyzing metrics...")
+        print("Running insights crew...")
 
-        print("Metrics successfully analyzed.")
+        insights_crew = InsightsCrew().crew()
+        inputs = {
+            "website_url": self.state.website_url,
+            "factual_metrics": self.state.factual_metrics,
+            "page_content": self.state.page_content_clean,
+        }
+        crew_result = insights_crew.kickoff(inputs=inputs)
+
+        print("Insights crew successfully run. \n")
+        print(crew_result.pydantic.model_dump_json(indent=2))

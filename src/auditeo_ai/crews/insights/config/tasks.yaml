@@ -1,0 +1,35 @@
+analysis_task:
+  description: >
+    Conduct a comprehensive analysis of {website_url}.
+    
+    DATA INPUTS:
+    - Factual Metrics: {factual_metrics}
+    - Clean Page Content: {page_content}
+    
+    YOUR ANALYSIS MUST COVER:
+    1. SEO Structure: Evaluate H1-H3 hierarchy and meta-data.
+    2. Messaging Clarity: Does the text clearly explain the value prop?
+    3. CTA Usage: Analyze the {factual_metrics.cta_count} CTAs. Are they sufficient for the {factual_metrics.total_word_count} words?
+    4. Content Depth: Is the content substantial enough for the topic?
+    5. UX Concerns: Identify any structural red flags.
+
+    KPI CALCULATION:
+    Calculate a 0-100 score for: SEO, Links, Usability, and Social based STRICTLY on the metrics.
+  expected_output: >
+    A detailed internal analysis document containing specific findings, metric references, and raw KPI scores.
+  agent: analyst_agent
+
+reporting_task:
+  description: >
+    Review the analysis from the Analyst Agent and format it into a professional Markdown report.
+    
+    The report must include:
+    - A 'Scorecard' section using the calculated KPIs.
+    - A 'Top 5 Action Items' list.
+    - Deep dives into SEO, Messaging, and UX.
+    - References to the factual data (e.g., "Only {factual_metrics.images_missing_alt_text_pct}% of images have alt text").
+    
+    Finally, populate the InsightCrewOutput Pydantic structure.
+  expected_output: >
+    A high-end Markdown report and a validated InsightCrewOutput object containing the KPIs and report text.
+  agent: reporter_agent
