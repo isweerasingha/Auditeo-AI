@@ -66,8 +66,6 @@ async def run_audit(payload: AuditRunRequest) -> APIResponse:
 
     response = await flow_loop_executor(_execute_audit_flow, inputs)
 
-    print("response.model_dump():", response.model_dump())
-
     if not response.success:
         raise HTTPException(status_code=500, detail=response.model_dump())
 
