@@ -53,14 +53,19 @@ class AuditeoScraperTool(BaseTool):
 
             ctas = soup.find_all(
                 ["button", "a"],
-                class_=lambda x: x
-                and any(
-                    word in x.lower()
-                    for word in ["btn", "button", "cta", "signup", "contact"]
+                class_=lambda x: (
+                    x
+                    and any(
+                        word in x.lower()
+                        for word in ["btn", "button", "cta", "signup", "contact"]
+                    )
                 ),
             )
 
             m_desc = soup.find("meta", {"name": "description"})
+
+            clean_text = soup.get_text(separator=" ", strip=True)
+            pretty_html = soup.prettify()
 
             metrics = FactualMetrics(
                 total_word_count=len(words),
@@ -75,6 +80,8 @@ class AuditeoScraperTool(BaseTool):
                 images_missing_alt_text_pct=alt_pct,
                 meta_title=soup.title.string.strip() if soup.title else None,
                 meta_description=m_desc["content"].strip() if m_desc else None,
+                page_content=pretty_html,
+                page_content_clean=clean_text,
             )
 
             return metrics.model_dump_json(indent=2)
