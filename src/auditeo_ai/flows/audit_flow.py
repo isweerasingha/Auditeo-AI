@@ -68,18 +68,22 @@ class AuditFlow(Flow[AuditFlowState]):
         print("Scraper tool result successfully set to State.")
 
     @listen("get_metrics")
-    def run_insights_crew(self) -> str:
+    def run_insights_crew(self):
         """
         Run the insights crew
         """
         print("Running insights crew...")
 
-        insights_crew = InsightsCrew().crew()
         inputs = {
             "website_url": self.state.website_url,
             "factual_metrics": self.state.factual_metrics.model_dump_json(indent=2),
-            "page_content": self.state.page_content_clean,
+            "page_content": self.state.page_content,
+            "cta_count": self.state.factual_metrics.cta_count,
+            "word_count": self.state.factual_metrics.total_word_count,
+            "images_missing_alt_text_pct": self.state.factual_metrics.images_missing_alt_text_pct,
         }
+        print(f"Insights crew inputs: {inputs}")
+        insights_crew = InsightsCrew().crew()
         crew_result = insights_crew.kickoff(inputs=inputs)
         self.state.insights_crew_output = crew_result.pydantic
 

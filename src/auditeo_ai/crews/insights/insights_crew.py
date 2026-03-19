@@ -72,6 +72,7 @@ class InsightsCrew:
         """
         Crew
         """
+
         return Crew(
             agents=self.agents,
             tasks=self.tasks,

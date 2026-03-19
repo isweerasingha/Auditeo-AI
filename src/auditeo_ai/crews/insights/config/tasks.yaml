@@ -8,7 +8,7 @@ analysis_task:
     1. **Metric Validation:** Compare the `total_word_count` to the `cta_count`. Calculate the 'CTA Density' (CTAs per 500 words).
     2. **Hierarchical Integrity:** Audit the `heading_counts`. Look for 'Heading Gaps' (e.g., H1 followed immediately by H3).
     3. **Asset Optimization:** Analyze the `images_missing_alt_text_pct`. Evaluate the impact on accessibility and SEO Indexing.
-    4. **Contextual Messaging:** Scan {page_content_clean} for 'Primary Value Prop' (PVP). Does it exist in the H1? 
+    4. **Contextual Messaging:** Scan page_content for 'Primary Value Prop' (PVP). Does it exist in the H1? 
     5. **Structural UX:** Identify 'Conversion Friction'—where links/CTAs are present but messaging is too thin to drive clicks.
 
     ### RULES
