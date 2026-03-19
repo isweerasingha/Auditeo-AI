@@ -21,8 +21,8 @@ class RecommendationCrew:
     @agent
     def strategy_lead(self) -> Agent:
         """
-        Analyst Agent.
-        Analyzes the metrics and page content.
+        Strategy Lead Agent.
+        Formulates 3-5 high-impact, prioritized recommendations for the website.
         """
         return Agent(
             config=self.agents_config["strategy_lead"],
@@ -33,8 +33,10 @@ class RecommendationCrew:
     @agent
     def strategy_validator(self) -> Agent:
         """
-        Reporter Agent.
-        Formats the analysis into a report.
+        Strategy Validator Agent.
+        Critically validates that every recommendation is 100% grounded in the factual
+        metrics.
+
         """
         return Agent(
             config=self.agents_config["strategy_validator"],

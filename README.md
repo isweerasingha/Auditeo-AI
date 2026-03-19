@@ -60,7 +60,7 @@ The audit process follows these core phases:
 
 ## API Documentation
 
-For detailed API documentation, please refer to the [API Documentation](./wiki/API.md).
+For detailed API documentation, please refer to the [API Wiki](./wiki/API.md).
 
 ---
 
