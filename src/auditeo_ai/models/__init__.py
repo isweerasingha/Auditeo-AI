@@ -1,5 +1,6 @@
-from auditeo_ai.models.insights import InsightsCrewOutput, InsightsKPIs
-from auditeo_ai.models.metrics import FactualMetrics, HeadingCounts, LinkCounts
+from .insights import InsightsCrewOutput, InsightsKPIs
+from .metrics import FactualMetrics, HeadingCounts, LinkCounts
+from .recommendations import RecommendationCrewOutput, RecommendationItem
 
 __all__ = [
     "FactualMetrics",
@@ -7,4 +8,6 @@ __all__ = [
     "InsightsCrewOutput",
     "InsightsKPIs",
     "LinkCounts",
+    "RecommendationCrewOutput",
+    "RecommendationItem",
 ]

@@ -29,7 +29,12 @@ class InsightsKPIs(BaseModel):
 
 
 class InsightsCrewOutput(BaseModel):
+    """
+    Insights Crew Output
+    """
+
     kpis: InsightsKPIs = Field(description="The KPIs of the page")
     structured_report: str = Field(
         description="The full Markdown report for the client."
     )
+

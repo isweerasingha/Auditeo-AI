@@ -1,0 +1,34 @@
+recommendation_task:
+  description: >
+    ### OBJECTIVE
+    Synthesize the audit data into 3-5 prioritized recommendations based on the 
+    {insights_crew_output}.
+
+    ### PROCESS
+    1. **Identify the 'Critical Failure':** Find the metric with the worst performance (e.g., {images_missing_alt_text_pct}% missing alt text).
+    2. **Prioritize by ROI:** Order the actions from 1 (Highest Impact) to 5.
+    3. **Draft the 'Reasoning':** Every recommendation MUST include a phrase like: "Because your site currently has {cta_count} CTAs for {total_word_count} words..."
+
+    ### RULES
+    - Be concise. Use professional enterprise language.
+    - Focus on SEO structure, Messaging clarity, and CTA usage.
+  expected_output: >
+    A draft list of prioritized recommendations with data-driven reasoning.
+  agent: strategy_lead
+
+validation_task:
+  description: >
+    ### OBJECTIVE
+    Review the recommendations and refine the recommendations into the final `RecommendationCrewOutput` format.
+
+    ### PROCESS
+    1. **Data Verification:** Cross-check the 'Reasoning' provided by the Lead against the {factual_metrics}.
+    2. **Refine for Precision:** If a recommendation is generic (e.g., "Improve SEO"), rewrite it to be specific (e.g., "Correct the H1-H3 hierarchy").
+    3. **Impact Assessment:** Ensure the 'expected_impact' is realistic.
+
+    ### RULES
+    - Ensure the final output matches the `RecommendationCrewOutput` Pydantic model perfectly.
+    - If logic is flawed, correct it before finalizing.
+  expected_output: >
+    A validated RecommendationCrewOutput object containing 3-5 recommendations.
+  agent: strategy_validator

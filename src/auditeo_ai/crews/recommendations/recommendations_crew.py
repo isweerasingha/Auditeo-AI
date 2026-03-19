@@ -3,68 +3,62 @@ from crewai.agents.agent_builder.base_agent import BaseAgent
 from crewai.project import CrewBase, agent, crew, task
 
 from auditeo_ai.config import LLMs
-from auditeo_ai.models import InsightsCrewOutput
+from auditeo_ai.models import RecommendationCrewOutput
 from auditeo_ai.utils import is_development
 
 
 @CrewBase
-class InsightsCrew:
+class RecommendationCrew:
     """
-    Insights Crew.
+    Recommendations Crew.
 
-    Using the extracted Factual Metrics and page content, generate a structured analysis
-    covering:
-    - SEO structure
-    - Messaging clarity
-    - CTA usage
-    - Content depth
-    - Obvious UX or structural concerns
+    Using the extracted Insights, generate recommendations for the client.
     """
 
     agents: list[BaseAgent]
     tasks: list[Task]
 
     @agent
-    def analyst_agent(self) -> Agent:
+    def strategy_lead(self) -> Agent:
         """
         Analyst Agent.
         Analyzes the metrics and page content.
         """
         return Agent(
-            config=self.agents_config["analyst_agent"],
+            config=self.agents_config["strategy_lead"],
             verbose=self._enable_verbose(),
             llm=LLMs.gpt_5_4,
         )
 
     @agent
-    def reporter_agent(self) -> Agent:
+    def strategy_validator(self) -> Agent:
         """
         Reporter Agent.
         Formats the analysis into a report.
         """
         return Agent(
-            config=self.agents_config["reporter_agent"],
+            config=self.agents_config["strategy_validator"],
             verbose=self._enable_verbose(),
             llm=LLMs.gpt_5_4_mini,
         )
 
     @task
-    def analysis_task(self) -> Task:
+    def recommendation_task(self) -> Task:
         """
         Analysis Task
         """
         return Task(
-            config=self.tasks_config["analysis_task"],
+            config=self.tasks_config["recommendation_task"],
         )
 
     @task
-    def reporting_task(self) -> Task:
+    def validation_task(self) -> Task:
         """
         Reporting Task
         """
         return Task(
-            config=self.tasks_config["reporting_task"],
-            output_pydantic=InsightsCrewOutput,
+            config=self.tasks_config["validation_task"],
+            output_pydantic=RecommendationCrewOutput,
         )
 
     @crew
