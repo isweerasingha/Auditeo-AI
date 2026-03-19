@@ -14,7 +14,7 @@ Auditeo AI is a comprehensive, AI-powered website auditing tool that leverages a
   - [Trade-offs](#trade-offs)
   - [Future Planned Improvements](#future-planned-improvements)
 - [API Documentation](#api-documentation)
-- [Example](#example)
+- [Demo](#demo)
 - [Installation](#installation)
 - [Running the Application](#running-the-application)
 - [Deployment](#deployment)
@@ -87,11 +87,13 @@ For detailed API documentation, please refer to the [API Wiki](./wiki/API.md).
 
 ---
 
-## Example
+## Demo
 
-![Example UI](./wiki/img/1.png)
+![Demo UI](./wiki/img/1.png)
+![Demo UI](./wiki/img/4.png)
+![Demo UI](./wiki/img/5.png)
 
-Please refer to the [Example Wiki](./wiki/Example.md) for complete UI.
+Please refer to the [Example Wiki](./wiki/Demo.md) for complete UI.
 
 ---
 
