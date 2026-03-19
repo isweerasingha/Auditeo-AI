@@ -45,9 +45,6 @@ class AuditFlow(Flow[AuditFlowState]):
         self.state.page_content_clean = result.page_content_clean
 
         print("Scraper tool result successfully set to State.")
-        print(f"Factual metrics: {self.state.factual_metrics} \n")
-        print(f"Page content: {self.state.page_content} \n")
-        print(f"Page content clean: {self.state.page_content_clean} \n")
 
     @listen("get_metrics")
     def analyze_metrics(self) -> str:

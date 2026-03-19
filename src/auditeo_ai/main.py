@@ -9,10 +9,7 @@ def main():
     """
     print("Starting the audit flow...")
 
-    website_url = input("Enter the website URL: ").strip()
-    if not website_url.startswith(("http://", "https://")):
-        website_url = f"https://{website_url}"
-
+    website_url = input("Enter the website URL: ")
     print(f"Website URL: {website_url}")
 
     try:
