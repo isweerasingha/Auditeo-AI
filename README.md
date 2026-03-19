@@ -4,6 +4,14 @@
 
 Auditeo AI is a comprehensive, AI-powered website auditing tool that leverages a multi-agent architecture to analyze websites. It extracts factual metrics, evaluates technical SEO and UX, and provides prioritized, actionable recommendations to improve website performance and conversion rates.
 
+## Why Select Crew AI and a Multi-Agentic Approach?
+
+Using a multi-agent framework like CrewAI provides several key advantages over a single-prompt LLM approach:
+- **Separation of Concerns:** Specialized agents focus on specific domains (e.g., analysis vs. formatting), leading to deeper, more accurate insights.
+- **Self-Correction & Validation:** Multi-agent workflows allow for built-in quality control. One agent generates recommendations while another critically validates them against factual data to prevent hallucinations.
+- **Model Optimization:** Complex reasoning tasks can be routed to more capable models (e.g., GPT 5.4), while formatting or validation tasks can use faster, cost-effective models (e.g., GPT 5.4 Mini).
+- **Complex Task Orchestration:** Breaking down the audit process into sequential crews (Insights -> Recommendations) ensures context is passed systematically, mimicking a real-world agency workflow.
+
 ---
 
 ## Table of Contents
@@ -30,10 +38,22 @@ The Auditeo AI solution is divided into a frontend UI (Streamlit), a backend API
 ![Autonomous Multi-Agent Website Audit Crew Flow](./wiki/auditeo-overview.png)
 
 The audit process follows these core phases:
-1. **Data Extraction & Scraping:** A scraper tool (using BeautifulSoup) visits the target URL, extracts factual metrics (word count, images, CTAs, headings, links), and cleans the page content by filtering out SVGs and scripts.
-2. **AI Insights Crew:** Specialized agents (Technical SEO Auditor and UX & Conversion Strategist) analyze the factual metrics and clean content to generate a synthesized analysis, structured critique, and KPI scores (SEO, Links, Usability, Social).
-3. **Strategy & Validation Crew:** A Principal Growth Strategist formulates prioritized recommendations tied to revenue potential, which are then validated by a Technical SEO Compliance Officer to ensure accuracy and reject generic advice.
-4. **Output & Delivery:** The final deliverables include factual metrics, a high-impact strategic synthesis, and a prioritized action plan, all presented through the Streamlit UI.
+
+**User Input: Website URL**  
+&darr;  
+**Audit Flow (Crew AI Flow)**
+
+1. **Scrape and Get Metrics:** Scrape the website, extract factual metrics, and set the initial state.
+2. **Run InsightsCrew:**
+   - **`analyst_agent`**: Analyzes the metrics and page content (powered by GPT 5.4).
+   - *then*
+   - **`reporter_agent`**: Formats the analysis into a structured report (powered by GPT 5.4 Mini).
+3. **Run RecommendationCrew:**
+   - **`strategy_lead`**: Formulates 3-5 high-impact, prioritized recommendations for the website (powered by GPT 5.4).
+   - *then*
+   - **`strategy_validator`**: Critically validates that every recommendation is 100% grounded in the factual metrics (powered by GPT 5.4 Mini).
+4. **Wrap the Response:** Package the final deliverables along with the Execution Context (Token usage, execution time & status).
+5. **Send to User:** Deliver the complete audit results to the frontend UI.
 
 ### AI Design Decisions
 
