@@ -14,6 +14,7 @@ Auditeo AI is a comprehensive, AI-powered website auditing tool that leverages a
   - [Trade-offs](#trade-offs)
   - [Future Planned Improvements](#future-planned-improvements)
 - [API Documentation](#api-documentation)
+- [Example](#example)
 - [Installation](#installation)
 - [Running the Application](#running-the-application)
 - [Deployment](#deployment)
@@ -27,7 +28,7 @@ Auditeo AI is a comprehensive, AI-powered website auditing tool that leverages a
 
 The Auditeo AI solution is divided into a frontend UI (Streamlit), a backend API (FastAPI), and an Audit Flow Engine powered by CrewAI. The architecture is designed to ground AI agents in factual data before generating insights and recommendations.
 
-![Autonomous Multi-Agent Website Audit Crew Flow](./wiki/auditeo-overview.png)
+![Autonomous Multi-Agent Website Audit Crew Flow](./wiki/img/auditeo-overview.png)
 
 The audit process follows these core phases:
 
@@ -83,6 +84,14 @@ Using a multi-agent framework like CrewAI provides several key advantages over a
 ## API Documentation
 
 For detailed API documentation, please refer to the [API Wiki](./wiki/API.md).
+
+---
+
+## Example
+
+![Example UI](./wiki/img/1.png)
+
+Please refer to the [Example Wiki](./wiki/Example.md) for complete UI.
 
 ---
 
