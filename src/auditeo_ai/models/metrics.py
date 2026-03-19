@@ -66,14 +66,6 @@ class FactualMetrics(BaseModel):
         default=None,
         description="Content of the meta description tag",
     )
-    page_content: str | None = Field(
-        default=None,
-        description="Raw HTML content of the page",
-    )
-    page_content_clean: str | None = Field(
-        default=None,
-        description="Clean text content of the page",
-    )
 
     @field_validator("images_missing_alt_text_pct")
     @classmethod

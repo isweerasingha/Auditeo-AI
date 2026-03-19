@@ -1,22 +1,45 @@
 import httpx
 from bs4 import BeautifulSoup
 from crewai.tools import BaseTool
+from pydantic import BaseModel, Field
 
 from auditeo_ai.models import FactualMetrics, HeadingCounts, LinkCounts
+from auditeo_ai.utils import generate_url
+
+
+class AuditeoScraperToolInput(BaseModel):
+    """
+    Input of the scraper tool
+    """
+
+    website_url: str = Field(description="The URL of the website to scrape")
+
+
+class AuditeoScraperToolOutput(BaseModel):
+    """
+    Output of the scraper tool
+    """
+
+    factual_metrics: FactualMetrics = Field(description="Factual metrics of the page")
+    page_content: str = Field(description="Raw HTML content of the page")
+    page_content_clean: str = Field(description="Clean text content of the page")
 
 
 class AuditeoScraperTool(BaseTool):
     name: str = "auditeo_web_scraper"
     description: str = "Scrapes a URL and returns structured factual metrics."
+    args_schema: type[BaseModel] = AuditeoScraperToolInput
 
-    def _run(self, url: str) -> str:
+    def _run(self, website_url: str) -> str:
         """
         Executes the scrape and returns the Pydantic model as a JSON string.
         """
         try:
+            website_url = generate_url(website_url)
+
             headers = {"User-Agent": "Auditeo/1.0 (Auditeo Internal Tool)"}
             response = httpx.get(
-                url, headers=headers, follow_redirects=True, timeout=15
+                website_url, headers=headers, follow_redirects=True, timeout=15
             )
             response.raise_for_status()
 
@@ -40,7 +63,7 @@ class AuditeoScraperTool(BaseTool):
 
             from urllib.parse import urlparse
 
-            domain = urlparse(url).netloc
+            domain = urlparse(website_url).netloc
             all_links = soup.find_all("a", href=True)
             internal = 0
             external = 0
@@ -80,11 +103,15 @@ class AuditeoScraperTool(BaseTool):
                 images_missing_alt_text_pct=alt_pct,
                 meta_title=soup.title.string.strip() if soup.title else None,
                 meta_description=m_desc["content"].strip() if m_desc else None,
+            )
+
+            output = AuditeoScraperToolOutput(
+                factual_metrics=metrics,
                 page_content=pretty_html,
                 page_content_clean=clean_text,
             )
 
-            return metrics.model_dump_json(indent=2)
+            return output.model_dump_json(indent=2)
 
         except Exception as e:
-            return f"Error scraping {url}: {str(e)}"
+            return f"Error scraping {website_url}: {str(e)}"
