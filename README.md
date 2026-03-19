@@ -93,7 +93,7 @@ For detailed API documentation, please refer to the [API Wiki](./wiki/API.md).
 ![Demo UI](./wiki/img/4.png)
 ![Demo UI](./wiki/img/5.png)
 
-Please refer to the [Example Wiki](./wiki/Demo.md) for complete UI.
+Please refer to the [Demo Wiki](./wiki/Demo.md) for complete Demo.
 
 ---
 
