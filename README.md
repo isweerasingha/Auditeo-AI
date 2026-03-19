@@ -13,7 +13,7 @@ Auditeo AI is a comprehensive, AI-powered website auditing tool that leverages a
   - [AI Design Decisions](#ai-design-decisions)
   - [Trade-offs](#trade-offs)
   - [Future Planned Improvements](#future-planned-improvements)
-- [API Documentation](./wiki/API.md)
+- [API Documentation](#api-documentation)
 - [Installation](#installation)
 - [Running the Application](#running-the-application)
 - [Deployment](#deployment)
@@ -55,6 +55,12 @@ The audit process follows these core phases:
 - **PDF Report Generation:** Adding functionality to export the final audit report and recommendations as a branded PDF for client deliverables.
 - **Real-World Data Integration:** Integrating with Google Search Console or Google Analytics APIs to ground the AI in actual traffic and performance data.
 - **Streaming UI Updates:** Implementing WebSockets or Server-Sent Events (SSE) to stream agent thoughts and progress to the UI in real-time.
+
+---
+
+## API Documentation
+
+For detailed API documentation, please refer to the [API Documentation](./wiki/API.md).
 
 ---
 
@@ -102,8 +108,6 @@ Start the API server (or with ASGI server targeting via `uvicorn run`):
 python -m auditeo_ai.main
 ```
 The API will be available at `http://localhost:8000`.
-
-For detailed API documentation, please refer to the [API Documentation](./wiki/API.md).
 
 ### 2. Run the Frontend UI (Streamlit)
 
