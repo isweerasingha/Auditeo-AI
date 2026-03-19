@@ -125,6 +125,10 @@ This project uses `uv` for fast dependency management and packaging.
    ```
 
    ```env
+   CREWAI_TRACING_ENABLED=true
+   ```
+
+   ```env
    ENV=development
    ```
 
