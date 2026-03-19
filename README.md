@@ -49,7 +49,7 @@ The audit process follows these core phases:
 
 ### AI Design Decisions
 
-## Why Select Crew AI and a Multi-Agentic Approach?
+## Why Select [Crew AI](https://crewai.com/) and a Multi-Agentic Approach?
 
 ![CrewAI](https://cdn.prod.website-files.com/69a111972d2e0bbcc6adb934/69a111972d2e0bbcc6adbbba_Logo.svg)
 
