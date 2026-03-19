@@ -1,6 +1,6 @@
-def generate_url(website_url: str) -> str:
+def format_url(website_url: str) -> str:
     """
-    Generate the URL
+    Format the URL
     """
     if not website_url.startswith(("http://", "https://")):
         website_url = f"https://{website_url}"

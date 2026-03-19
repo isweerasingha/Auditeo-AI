@@ -13,6 +13,7 @@ dependencies = [
     "crewai-tools>=1.11.0",
     "httpx>=0.28.1",
     "pydantic-settings>=2.10.1",
+    "reportlab>=4.4.4",
 ]
 
 [build-system]

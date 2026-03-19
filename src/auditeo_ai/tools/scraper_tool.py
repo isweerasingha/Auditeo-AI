@@ -4,7 +4,7 @@ from crewai.tools import BaseTool
 from pydantic import BaseModel, Field
 
 from auditeo_ai.models import FactualMetrics, HeadingCounts, LinkCounts
-from auditeo_ai.utils import generate_url
+from auditeo_ai.utils import format_url
 
 
 class AuditeoScraperToolInput(BaseModel):
@@ -35,7 +35,7 @@ class AuditeoScraperTool(BaseTool):
         Executes the scrape and returns the Pydantic model as a JSON string.
         """
         try:
-            website_url = generate_url(website_url)
+            website_url = format_url(website_url)
 
             headers = {"User-Agent": "Auditeo/1.0 (Auditeo Internal Tool)"}
             response = httpx.get(
